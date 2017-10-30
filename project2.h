@@ -1,10 +1,3 @@
-/*
- * project2.h
- *
- *  Created on: Oct 30, 2017
- *      Author: USER
- */
-
 #ifndef INCLUDES_PROJECT2_H_
 #define INCLUDES_PROJECT2_H_
 int main(void);
