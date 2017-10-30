@@ -1,11 +1,15 @@
 #include"MKL25Z4.h"
 #include"uart.h"
 #include "cirbuf.h"
-
+#include<stdint.h>
+#include<stdlib.h>
 uint8_t rec1;
- CB_t send;
- CB_t receive;
-
+//CB_t send;
+//CB_t receive;
+CB_t *REC;
+CB_t *SEND;
+uint8_t data;
+CB_status p;
 void uart_configure(void){
 
 #ifdef INTERRUPT
@@ -81,7 +85,7 @@ int8_t uart_recieve_byte (void){
 
 }
 
-extern void UART0_IRQHandler(void)
+void UART0_IRQHandler(void)
 
 {
 
@@ -91,7 +95,7 @@ extern void UART0_IRQHandler(void)
 	if ((UART0_C2 & UART0_C2_RIE_MASK)==(UART0_C2_RIE_MASK)){
 
         rec1 = UART0_D;
-
+        p=CB_buffer_add_item(REC,rec1);
 
      UART0_C2&=~UART0_C2_RIE_MASK;
      UART0_C2 |= UART0_C2_TIE_MASK;
@@ -99,8 +103,10 @@ extern void UART0_IRQHandler(void)
 	}
    else	if ((UART0_C2 & UART0_C2_TIE_MASK)==(UART0_C2_TIE_MASK))
    {
-
+	   p= CB_buffer_remove_item(SEND,&rec1);
 	   UART0_D = rec1;
+	  // uart_send_byte(*SEND.tail);
+
 	   UART0_C2 &= ~UART0_C2_TIE_MASK;
 	   UART0_C2 |=UART0_C2_RIE_MASK;
 
