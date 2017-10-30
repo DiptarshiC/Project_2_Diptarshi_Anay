@@ -47,7 +47,7 @@ void uart_configure(void){
 
 
 
-void uart_send_byte(int8_t data){
+void uart_send(int8_t data){
 
 	UART0_D = data;
 
@@ -55,7 +55,7 @@ void uart_send_byte(int8_t data){
 
 
 
-void uart_send_byte_n(uint8_t *data, uint32_t length){
+void uart_send_n(uint8_t *data, uint32_t length){
 
 	uint8_t i;
 

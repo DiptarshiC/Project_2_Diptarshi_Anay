@@ -1,15 +1,50 @@
 /*
- * project2.h
+
+ * uart.h
+
  *
- *  Created on: Oct 30, 2017
- *      Author: USER
+
+ *  Created on: Mar 6, 2017
+
+ *      Author: daash
+
  */
+#include<stdint.h>
+extern uint8_t rec1;
+#include<stdint.h>
+#ifndef INCLUDES_UART_H_
 
-#ifndef INCLUDES_PROJECT2_H_
-#define INCLUDES_PROJECT2_H_
-int main(void);
-void count_stats(uint8_t c,uint8_t alpha,uint8_t num,uint8_t punc,uint8_t misc);
-void print(uint8_t byte);
-uint8_t my_itoa (int32_t data, uint8_t * ptr, uint32_t base);
+#define INCLUDES_UART_H_
 
-#endif /* INCLUDES_PROJECT2_H_ */
+
+
+#define SIM_SOPT2_MCGFLLCLK_MASK 0x4000000u
+
+
+
+#define UART0_INT_ENABLE_MASK 0x00001000u
+
+
+
+#define INTERRUPT
+
+
+
+#define OSR_VAL 15
+
+
+
+#define SBR_VAL 0x17
+
+void uart_configure(void);
+
+void uart_send(uint8_t data);
+
+void uart_send_n(uint8_t *data, uint32_t length);
+
+int8_t uart_recieve_byte (void);
+
+
+
+#endif /* INCLUDES_UART_H_ */
+
