@@ -77,7 +77,7 @@ void project2()
 		}
 
 		char a3[8] = " Digits:";
-		int length3 = 13;
+		int length3 = 8;
 		char * ptr3;
 		ptr3 = &a3[0];
 		for(int i = 0; i < length3; i++)
