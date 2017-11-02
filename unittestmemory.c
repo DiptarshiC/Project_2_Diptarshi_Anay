@@ -17,7 +17,7 @@ int test_InvalidPointer0(void **state)             //for memmove
   dst= NULL;
   length= 8;
   dst= my_memmove(src, dst,length);
-  if( dst == NULL )
+  if( dst == NULL )                                //checked if it shows NULL as per the code
   {
   printf(" Null pointer handled.");
   }
@@ -36,7 +36,7 @@ int test_NoOverlap(void **state)
     dst= &a[14];
     length = 8;
     dst= my_memmove(src, dst,length);
-    if ( src + length > dst)
+    if ( src + length > dst)                               //checks if src and dst are overlapping 
     {
     printf(" Overlap not handled");
     }
@@ -56,7 +56,7 @@ int test_SRCinDST(void **state)
     dst= &a[9];
     length = 8;
     dst= my_memmove(src, dst,length);
-    if ( src + length > dst)
+    if ( src + length > dst)                                           //checks if there's any src in dst
     {
     printf(" SRC in DST overlap");
     }
@@ -76,7 +76,7 @@ int test_DSTinSRC(void **state)
     dst= &a[4];
     length = 8;
     dst= my_memmove(src, dst,length);
-    if ( dst + length > src)
+    if ( dst + length > src)                                                  //checks if there's any src in dst
     {
     printf(" DST in SRC overlap");
     }
@@ -95,7 +95,7 @@ int test_InvalidPointer1(void **state)              //for memset
     length= 8;
     value = 3;
     src= my_memset(src,length, value);
-    if( src == NULL )
+    if( src == NULL )                                                     //checks if null pointer is handled 
     printf(" Null pointer handled.");
     return TEST_NO_ERROR;
     assert_int_equal(1,1);
@@ -111,7 +111,7 @@ int test_checkset_length(void **state)
     dst= malloc(50 * sizeof(int8_t));
     value= 0x40;
     length = 10;
-    for(int i=0;i< length; i++)
+    for(int i=0;i< length; i++)           //checks if the same value is at all locations by cokmparing it to hardcoded value
     {
       *dst = 0x40;
       dst++;
@@ -119,7 +119,7 @@ int test_checkset_length(void **state)
     src = my_memset(src, length, value);
     for(int i=0;i< length; i++)
     {
-    if(*src == *dst)
+    if(*src == *dst) 
     {
        src++;
        dst++;
@@ -143,7 +143,7 @@ int test_InvalidPointer2(void **state)              //for memzero
    length= 8;
    src= my_memzero(src,length);
    if( src == NULL )
-   printf(" Null pointer handled.");
+   printf(" Null pointer handled.");                  //checks if NULL pointer is handled in the code.
    assert_int_equal(1,1);
    else
    printf(" Null pointer not handled.");
@@ -155,7 +155,7 @@ int test_checkset_zero(void **state)
     src= malloc(50 * sizeof(int8_t));
     dst= malloc(50 * sizeof(int8_t));
     length = 10;
-    for(int i=0;i< length; i++)
+    for(int i=0;i< length; i++)           //checks if 0 is at all locations by comparing it to hardcoded value
     {
       *dst = 0x00;
       dst++
@@ -186,7 +186,7 @@ int test_InvalidPointer3(void **state)               //for reverse
   length= 8;
   src= my_reverse(src,length);
   if( src == NULL )
-  printf(" Null pointer handled.");
+  printf(" Null pointer handled.");                 //checks if NULL pointer is handled in the code.
   assert_int_equal(1,1);
   else
   printf(" Null pointer not handled.");
@@ -198,9 +198,9 @@ int test_Checkodd(void **state)
   src= &a[0];
   int b[5]= {5,4,3,2,1};
   dst= &b[0];
-  src = malloc(10 * sizeof(int8_t));
+  src = malloc(10 * sizeof(int8_t));               
   length=5;
-  src = my_reverse( src,length);
+  src = my_reverse( src,length);                      //  check if it reverses for odd length
   for(int i=0;i< length; i++)
     {
     if(*src == *dst)
@@ -229,7 +229,7 @@ int test_Checkeven(void **state)
   dst= &b[0];
   src = malloc(10 * sizeof(int8_t));
   length=4;
-  src = my_reverse( src,length);
+  src = my_reverse( src,length);                      //  check if it reverses for even length
   for(int i=0;i< length; i++)
     {
     if(*src == *dst)
@@ -277,7 +277,7 @@ int test_Checkchar(void **state)
     else
     {
        return TEST_NO_ERROR;
-       printf("Correct Char Reverse");
+       printf("Correct Char Reverse");                      //  check if it reverses for char
        assert_int_equal(1,1);
     }
     }
