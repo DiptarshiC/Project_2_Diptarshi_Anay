@@ -6,7 +6,7 @@
 
  *  Created on: 28th Oct , 2017
 
- *      Author: Diptarshi Chakraborty
+ *      Author: Diptarshi Chakraborty & Anay Gondhalekar
 
  */
 #include<stdint.h>
